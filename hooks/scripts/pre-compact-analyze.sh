@@ -6,7 +6,7 @@ set -e
 
 # Configuration
 MEMORY_DB="${MEMORY_DB:-~/.claude/memory/memory.db}"
-PLUGIN_ROOT="/path/to/claude/plugins/claude-memory-manager"
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-/path/to/claude/plugins/claude-memory-manager}"
 DETECTOR="$PLUGIN_ROOT/hooks/scripts/quality-detector.sh"
 
 # Expand tilde

@@ -7,7 +7,7 @@ set -e
 
 # Configuration
 MEMORY_DB="${MEMORY_DB:-~/.claude/memory/memory.db}"
-PLUGIN_ROOT="/path/to/claude/plugins/claude-memory-manager"
+PLUGIN_ROOT="${CLAUDE_PLUGIN_ROOT:-/path/to/claude/plugins/claude-memory-manager}"
 
 # Expand tilde in path
 MEMORY_DB="${MEMORY_DB/#\~/$HOME}"

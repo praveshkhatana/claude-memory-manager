@@ -87,7 +87,7 @@ This is a SQLite database that will be created automatically when you first use 
 Run the test script to verify everything works:
 
 ```bash
-cd /path/to/claude/plugins/claude-memory-manager
+cd yourClaudePluginsDirectory
 node test-plugin.mjs
 ```
 

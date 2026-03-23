@@ -19,7 +19,7 @@ The `claude-memory-manager` plugin preserves conversation history in an embedded
 
 1. **Clone or download plugin** to your Claude Code plugins directory:
    ```bash
-   /Users/praveshkhatana/.claude/plugins/
+   yourClaudePluginsDirectory/
    ```
 
 2. **Enable the plugin** in Claude Code settings:
@@ -212,11 +212,11 @@ MIT
 
 ## Author
 
-Claude Memory Plugin Developer
+Pravesh Khatana
 
 ## Repository
 
-https://github.com/user/claude-memory-manager
+https://github.com/praveshkhatana/claude-memory-manager
 
 ## Keywords
 

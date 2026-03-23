@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Lightweight memory plugin for Claude Code that automatically captures and indexes conversation context without token bloat. Designed to preserve critical project knowledge (architecture decisions, implementation details, troubleshooting steps) while keeping memory searchable and manageable.",
   "author": {
-    "name": "Claude Memory Plugin Developer",
-    "email": "developer@example.com",
-    "url": "https://github.com/user/claude-memory-manager"
+    "name": "Pravesh Khatana",
+    "email": "pravesh@example.com",
+    "url": "https://github.com/praveshkhatana/claude-memory-manager"
   },
-  "homepage": "https://github.com/user/claude-memory-manager",
-  "repository": "https://github.com/user/claude-memory-manager",
+  "homepage": "https://github.com/praveshkhatana/claude-memory-manager",
+  "repository": "https://github.com/praveshkhatana/claude-memory-manager",
   "license": "MIT",
   "keywords": [
     "memory",

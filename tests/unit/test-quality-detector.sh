@@ -1,7 +1,7 @@
 #!/bin/bash
 # Unit tests for quality detector script
 
-SCRIPT_DIR="/Users/praveshkhatana/.claude/plugins/claude-memory-manager/hooks/scripts"
+SCRIPT_DIR="/path/to/claude/plugins/claude-memory-manager/hooks/scripts"
 DETECTOR="$SCRIPT_DIR/quality-detector.sh"
 
 echo "=== Quality Detector Unit Tests ==="

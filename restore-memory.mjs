@@ -27,14 +27,14 @@ async function restoreMemory() {
   // Memory files to restore
   const memoryFiles = [
     {
-      path: '/Users/praveshkhatana/.claude/projects/-Users-praveshkhatana-Desktop-projects-Flow-Draw/memory/project-architecture-wasm-rust.md',
+      path: '/yourClaudeDirectory/projects/YOUR_PROJECT/memory/project-architecture-wasm-rust.md',
       tags: ['project', 'architecture', 'wasm', 'rust', 'ip-protection'],
-      project: 'Flow-Draw'
+      project: 'YOUR_PROJECT'
     },
     {
-      path: '/Users/praveshkhatana/.claude/projects/-Users-praveshkhatana-Desktop-projects-Flow-Draw/memory/documentation-optimization-rules.md',
+      path: '/yourClaudeDirectory/projects/YOUR_PROJECT/memory/documentation-optimization-rules.md',
       tags: ['documentation', 'optimization', 'token-saving'],
-      project: 'Flow-Draw'
+      project: 'YOUR_PROJECT'
     }
   ];
 

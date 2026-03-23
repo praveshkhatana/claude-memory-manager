@@ -16,7 +16,7 @@ The easiest way to share your plugin with others is to host it on GitHub.
 
 2. **Initialize Git Repository (if not already done)**
    ```bash
-   cd /Users/praveshkhatana/.claude/plugins/claude-memory-manager
+   cd /path/to/claude/plugins/claude-memory-manager
 
    # Initialize git
    git init

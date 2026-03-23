@@ -1,0 +1,217 @@
+---
+# Claude Memory Manager - User Configuration
+# Copy this file to .claude/claude-memory-manager.local.md and customize
+
+# Search Configuration
+defaultSearchMode: semantic  # Options: semantic, text, both
+# semantic: Use vector embeddings for similarity search
+# text: Use keyword/regex search
+# both: Combine both approaches
+
+# Auto-Indexing Settings
+autoIndex:
+  enabled: true
+  batch_size: 3  # Conversations per batch
+  min_content_length: 20  # Minimum words for indexing
+  max_content_length: 5000  # Maximum tokens (summary fallback)
+
+# Embedding Configuration
+embedding:
+  model: claude-sonnet-4-6  # Model for generating embeddings
+  dimensions: 1536  # Vector dimensions
+  index_conversations: true  # Index conversations with embeddings
+
+# Database Settings
+database:
+  path: ~/.claude/memory/memory.db
+  max_size_mb: 500  # Trigger cleanup when exceeded
+  backup_enabled: true
+  backup_path: ~/.claude/memory/backups
+
+# Retention Policy
+retention:
+  conversations_days: 365  # Keep conversations for N days
+  unindexed_days: 90  # Keep unindexed for N days
+  keep_tagged: true  # Never remove tagged conversations
+
+# Cleanup Settings
+cleanup:
+  enabled: true
+  schedule: weekly  # Options: weekly, monthly, manual
+  day: sunday  # Day of week for weekly cleanup
+  prune_old: true
+  rebuild_indexes: true
+  optimize_storage: true
+
+# Indexing Triggers
+indexingTriggers:
+  session_end: true  # Index after session ends
+  summary_update: true  # Re-index when summary changes
+  explicit_request: true  # Index when user requests
+
+# Performance Settings
+performance:
+  async_operations: true  # Run indexing in background
+  max_concurrent_requests: 3
+  timeout_seconds: 30
+  retry_attempts: 3
+  retry_delay_ms: 1000
+
+# Logging
+logging:
+  enabled: true
+  level: info  # Options: debug, info, warn, error
+  path: ~/.claude/memory/memory.log
+
+# Advanced Settings
+advanced:
+  enable_fts_search: true  # Full-text search support
+  vector_distance_function: cosine  # Options: cosine, euclidean, dot
+  embedding_cache_enabled: true
+---
+
+# Claude Memory Manager Configuration Guide
+
+## Quick Start
+
+1. Copy this file: `cp .claude/claude-memory-manager.local.md.example .claude/claude-memory-manager.local.md`
+2. Edit the values below to customize behavior
+3. Settings are loaded automatically on plugin start
+
+## Configuration Sections
+
+### Search Configuration
+
+`defaultSearchMode`: Determines default search behavior when user queries memory
+- `semantic`: Search by meaning using vector embeddings (recommended)
+- `text`: Search by keywords/regex matching
+- `both`: Combine semantic and text search for comprehensive results
+
+### Auto-Indexing Settings
+
+Control how and when conversations are indexed with embeddings:
+
+- `enabled`: Enable/disable automatic indexing
+- `batch_size`: Number of conversations to process per batch
+- `min_content_length`: Minimum word count to consider for indexing
+- `max_content_length`: Maximum tokens to embed (fallback to summary if exceeded)
+
+### Embedding Configuration
+
+Settings for vector embedding generation:
+
+- `model`: Claude model used for generating embeddings
+- `dimensions`: Size of vector representation (affects search quality)
+- `index_conversations`: Whether to create vector similarity index
+
+### Database Settings
+
+Storage and database management:
+
+- `path`: Location of SQLite database file
+- `max_size_mb`: Size threshold that triggers cleanup
+- `backup_enabled`: Automatic backup before destructive operations
+- `backup_path`: Directory for backup files
+
+### Retention Policy
+
+How long to keep conversation data:
+
+- `conversations_days`: Maximum age to retain conversations
+- `unindexed_days`: Maximum age for conversations without embeddings
+- `keep_tagged`: Never delete conversations that have tags
+
+### Cleanup Settings
+
+Periodic database maintenance:
+
+- `enabled`: Enable automatic cleanup operations
+- `schedule`: When to run cleanup (weekly/monthly/manual)
+- `day`: Day of week for weekly cleanup
+- `prune_old`: Remove old conversations per retention policy
+- `rebuild_indexes`: Rebuild database indexes for performance
+- `optimize_storage`: Compact database to reclaim space
+
+### Indexing Triggers
+
+When to trigger indexing:
+
+- `session_end`: Index conversation after session completes
+- `summary_update`: Regenerate embedding when summary changes
+- `explicit_request`: Index when user explicitly requests
+
+### Performance Settings
+
+Tune indexing and search performance:
+
+- `async_operations`: Run indexing in background (non-blocking)
+- `max_concurrent_requests`: Limit concurrent embedding requests
+- `timeout_seconds`: Maximum time for indexing operations
+- `retry_attempts`: Number of retries on transient errors
+- `retry_delay_ms`: Delay between retries (exponential backoff)
+
+### Logging
+
+Control logging verbosity:
+
+- `enabled`: Enable logging to file
+- `level`: Log verbosity (debug/info/warn/error)
+- `path`: Location of log file
+
+### Advanced Settings
+
+Expert-level configuration:
+
+- `enable_fts_search`: Full-text search support
+- `vector_distance_function`: Similarity metric for vectors
+- `embedding_cache_enabled`: Cache embedding results
+- `custom_prompt`: Custom prompt for embedding generation
+
+## Example Configurations
+
+### Minimal Configuration
+
+```yaml
+autoIndex:
+  enabled: true
+
+retention:
+  conversations_days: 90
+```
+
+### Development Configuration
+
+```yaml
+autoIndex:
+  enabled: true
+  batch_size: 1
+
+logging:
+  enabled: true
+  level: debug
+```
+
+### Production Configuration
+
+```yaml
+defaultSearchMode: semantic
+autoIndex:
+  enabled: true
+  batch_size: 5
+
+cleanup:
+  enabled: true
+  schedule: weekly
+
+performance:
+  async_operations: true
+  max_concurrent_requests: 5
+```
+
+## Notes
+
+- All paths support `~` expansion for home directory
+- Settings are reloaded on plugin start (restart required)
+- Boolean values: `true` or `false`
+- Numbers: Use integers or floats as appropriate
+- Strings: Use quotes for all string values

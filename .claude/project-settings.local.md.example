@@ -1,0 +1,103 @@
+---
+# Project-Specific Memory Settings
+# Use per-project to customize memory behavior for specific codebases
+
+# Project Identification
+project: my-awesome-project
+
+# Override search mode for this project
+defaultSearchMode: both  # Use both semantic and text search
+
+# Project-specific tagging
+autoTag:
+  enabled: true
+  keywords:
+    - "frontend"
+    - "backend"
+    - "api"
+    - "database"
+  patterns:
+    - "bugfix: {component}"
+    - "feature:{category}"
+
+# Project-specific retention
+retention:
+  conversations_days: 180  # Keep for 6 months
+  keep_tagged: true
+  preserve_critical: true  # Never delete critical conversations
+
+# Project-specific cleanup
+cleanup:
+  schedule: monthly
+  prune_old: true
+  keep_project_history: true
+
+# Performance tuning for this project
+performance:
+  async_operations: true
+  max_concurrent_requests: 2
+  timeout_seconds: 45
+
+# Search customization
+search:
+  min_relevance_score: 0.6  # Minimum similarity score
+  result_limit: 20  # Max results per search
+  include_full_context: false
+
+---
+
+# Project-Specific Configuration
+
+## Usage
+
+Place this file in your project's `.claude/` directory:
+```
+my-awesome-project/
+├── .claude/
+│   └── claude-memory-manager.local.md
+└── ...
+```
+
+## Override Behavior
+
+Project settings override global settings:
+- Global settings from `~/.claude/claude-memory-manager.local.md`
+- Project settings from `<project>/.claude/claude-memory-manager.local.md`
+- Project-specific: `autoTag`, `search`, `retention` sections
+
+## Common Use Cases
+
+### Frontend Projects
+
+```yaml
+autoTag:
+  enabled: true
+  keywords:
+    - "react"
+    - "component"
+    - "ui"
+    - "styling"
+
+search:
+  include_full_context: true  # UI work needs full context
+```
+
+### Backend Projects
+
+```yaml
+autoTag:
+  enabled: true
+  keywords:
+    - "api"
+    - "database"
+    - "migration"
+    - "auth"
+```
+
+### Research/Exploration
+
+```yaml
+retention:
+  conversations_days: 730  # Keep for 2 years
+  preserve_critical: true
+```

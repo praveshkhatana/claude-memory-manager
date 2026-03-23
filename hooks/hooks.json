@@ -1,0 +1,32 @@
+{
+  "SessionEnd": [
+    {
+      "matcher": ".*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash /Users/praveshkhatana/.claude/plugins/claude-memory-manager/hooks/scripts/session-end-analyze.sh",
+          "timeout": 60,
+          "env": {
+            "MEMORY_DB": "~/.claude/memory/memory.db"
+          }
+        }
+      ]
+    }
+  ],
+  "PreCompact": [
+    {
+      "matcher": ".*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "bash /Users/praveshkhatana/.claude/plugins/claude-memory-manager/hooks/scripts/pre-compact-analyze.sh",
+          "timeout": 30,
+          "env": {
+            "MEMORY_DB": "~/.claude/memory/memory.db"
+          }
+        }
+      ]
+    }
+  ]
+}

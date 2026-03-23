@@ -1,0 +1,210 @@
+---
+# Production Memory Manager Configuration
+# Optimized settings for production use with teams and large projects
+
+# Search Configuration
+defaultSearchMode: both  # Use both semantic and text for best results
+
+# Auto-Indexing Settings
+autoIndex:
+  enabled: true
+  batch_size: 5  # Higher batch for efficiency
+  min_content_length: 20
+  max_content_length: 5000
+  priority_important: true  # Prioritize important conversations
+
+# Embedding Configuration
+embedding:
+  model: claude-sonnet-4-6
+  dimensions: 1536
+  index_conversations: true
+  cache_results: true  # Cache embedding results
+
+# Database Settings
+database:
+  path: ~/.claude/memory/memory.db
+  max_size_mb: 1000  # Higher threshold for production
+  backup_enabled: true
+  backup_path: ~/.claude/memory/backups
+  backup_retention_days: 30  # Keep backups for 30 days
+
+# Retention Policy
+retention:
+  conversations_days: 365  # 1 year retention
+  unindexed_days: 60  # Shorter for unindexed
+  keep_tagged: true
+  keep_critical: true  # Never delete important
+
+# Cleanup Settings
+cleanup:
+  enabled: true
+  schedule: weekly
+  day: sunday
+  prune_old: true
+  rebuild_indexes: true
+  optimize_storage: true
+  analyze_plans: true  # Analyze query plans
+
+# Indexing Triggers
+indexingTriggers:
+  session_end: true
+  summary_update: true
+  explicit_request: true
+  periodic_scan: true  # Scan periodically for missed conversations
+
+# Performance Settings
+performance:
+  async_operations: true
+  max_concurrent_requests: 5  # Higher for production
+  timeout_seconds: 45
+  retry_attempts: 5  # More retries for resilience
+  retry_delay_ms: 1000
+
+# Logging
+logging:
+  enabled: true
+  level: info
+  path: ~/.claude/memory/memory.log
+  rotation_enabled: true
+  max_log_size_mb: 10
+  retention_days: 30
+
+# Team/Shared Settings
+team:
+  shared_memory: false  # Set true if sharing across team
+  sync_enabled: false  # Enable for team sync
+  conflict_resolution: timestamp  # How to resolve conflicts
+
+# Search Optimization
+search:
+  enable_fts_search: true
+  vector_distance_function: cosine
+  min_relevance_score: 0.5  # Lower threshold for more results
+  result_limit: 30
+  include_full_context: false
+  cache_queries: true
+
+# Security
+security:
+  encrypt_database: false  # Enable encryption for sensitive data
+  access_log_enabled: true
+  audit_trail: true
+
+# Monitoring
+monitoring:
+  health_check_enabled: true
+  alert_on_error: true
+  performance_tracking: true
+  report_anomalies: true
+
+# Advanced Settings
+advanced:
+  enable_fts_search: true
+  vector_distance_function: cosine
+  embedding_cache_enabled: true
+  query_optimization: true
+  result_ranking: hybrid  # Combine semantic and text relevance
+
+---
+
+# Production Configuration Guide
+
+## Overview
+
+This configuration is optimized for production environments with:
+- Teams and multiple users
+- Large conversation history
+- Frequent usage
+- Reliability requirements
+
+## Production Optimizations
+
+### Performance
+- Larger batch sizes (5 vs 3)
+- More concurrent requests (5 vs 3)
+- Extended timeout (45s vs 30s)
+- More retries (5 vs 3)
+- Query caching enabled
+
+### Reliability
+- Extended retention (1 year)
+- Backup management (30-day retention)
+- Conflict resolution for shared use
+- Comprehensive logging with rotation
+- Health checks and monitoring
+
+### Search Quality
+- Both semantic and text search
+- FTS (full-text search) enabled
+- Lower relevance threshold (more results)
+- Hybrid result ranking
+- Query optimization
+
+## Deployment Checklist
+
+- [ ] Set appropriate retention period
+- [ ] Configure team sharing if needed
+- [ ] Enable encryption for sensitive data
+- [ ] Set up backup destination
+- [ ] Configure monitoring alerts
+- [ ] Test cleanup schedule
+- [ ] Verify logging rotation
+
+## Monitoring
+
+Production configuration includes:
+- Health checks on database
+- Performance tracking
+- Anomaly detection
+- Error alerting
+
+## Scaling Considerations
+
+For very large deployments (10,000+ conversations):
+- Increase `max_size_mb` threshold
+- Consider `max_concurrent_requests: 10`
+- Enable `query_optimization: true`
+- Monitor memory usage during indexing
+
+## Backup Strategy
+
+Production backups include:
+- Automatic backups before cleanup
+- 30-day backup retention
+- Multiple backup rotation
+- Verified backup integrity
+
+## Security Notes
+
+For production with sensitive data:
+1. Set `encrypt_database: true`
+2. Configure `access_log_enabled: true`
+3. Enable `audit_trail: true`
+4. Secure backup location
+5. Review access permissions
+
+## Team Usage
+
+For team environments:
+1. Configure `shared_memory: true`
+2. Set `sync_enabled: true` for cloud sync
+3. Define `conflict_resolution` strategy
+4. Establish shared tagging conventions
+
+## Maintenance Schedule
+
+Weekly cleanup runs include:
+- VACUUM and ANALYZE
+- Old data pruning
+- Index rebuilds
+- Storage optimization
+- Health check reporting
+
+## Monitoring Alerts
+
+Configure alerts for:
+- Database corruption
+- Indexing failures
+- Disk space warnings
+- Performance degradation
+- Backup failures

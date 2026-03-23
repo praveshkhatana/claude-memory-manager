@@ -1,0 +1,46 @@
+# Compiled JavaScript
+dist/
+*.js
+*.js.map
+*.d.ts
+
+# Node modules
+node_modules/
+
+# Local settings (user-specific configuration)
+.claude/*.local.md
+
+# Database files (if created during development)
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+tmp/
+temp/
+*.tmp

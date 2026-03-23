@@ -1,0 +1,50 @@
+---
+# Minimal Memory Manager Configuration
+# Basic settings for quick setup with sensible defaults
+
+# Enable automatic indexing
+autoIndex:
+  enabled: true
+
+# Keep conversations for 3 months
+retention:
+  conversations_days: 90
+
+# Weekly cleanup
+cleanup:
+  enabled: true
+  schedule: weekly
+
+---
+
+# Minimal Configuration
+
+This file provides the minimum configuration needed to use the memory manager plugin.
+
+## What's Included
+
+- Automatic indexing enabled
+- 90-day retention (3 months)
+- Weekly cleanup enabled
+
+## What Uses Defaults
+
+- Search mode: semantic
+- Database location: ~/.claude/memory/memory.db
+- Embedding model: claude-sonnet-4-6
+- Logging: enabled at info level
+
+## Getting Started
+
+1. Copy this file: `cp .claude/minimal-settings.local.md.example .claude/claude-memory-manager.local.md`
+2. (Optional) Customize retention period
+3. Use memory commands: `cc memory-init`, `cc memory-status`
+
+## Next Steps
+
+For more control, copy the full template:
+```bash
+cp .claude/claude-memory-manager.local.md.example .claude/claude-memory-manager.local.md
+```
+
+Then customize sections as needed.
